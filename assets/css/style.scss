@@ -1,0 +1,58 @@
+#chokolate-rain-by-csomor {
+  height: 100vh;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+#chokolate-rain-music-controller-by-csomor{
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rain {
+  background: white;
+  background: url('../images/csoki.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 50px;
+  position: absolute;
+  width: 50px;
+  z-index: 99999;
+}
+
+$rain: 100;
+
+@for $i from 1 through $rain {
+  $top: (random(10) + 10) * 1%;
+  $left: random(100) * 1%;
+  $opacity: (random(50) + 50) * 0.01;
+  $delay: random(20) - 1s;
+
+  .rain:nth-of-type(#{$i}) {
+    animation-name: rain-#{$i};
+    animation-delay: $delay;
+    animation-duration: random(6) + 4s;
+    animation-iteration-count: infinite;
+    left: $left;
+    opacity: $opacity;
+    top: -$top;
+  }
+
+  @keyframes rain-#{$i} {
+    0% {
+      left: $left;
+      opacity: $opacity;
+      top: -$top;
+    }
+    100% {
+      opacity: 0;
+      top: $top + 80%;
+    }
+  }
+}
